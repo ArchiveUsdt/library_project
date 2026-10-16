@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Каталог — Читальня{% endblock %}
+{% block content %}
+<h1>Каталог</h1>
+<form class="filters" method="get">
+  <input id="q" name="q" value="{{ params.q }}" placeholder="Название или автор" aria-label="Поиск">
+  <select name="category" aria-label="Категория">
+    <option value="">Все категории</option>
+    {% for c in categories %}<option value="{{ c.id }}" {% if params.category == c.id|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+  </select>
+  <select name="sort" aria-label="Сортировка">
+    <option value="new" {% if params.sort == "new" %}selected{% endif %}>Сначала новые</option>
+    <option value="title" {% if params.sort == "title" %}selected{% endif %}>По названию</option>
+    <option value="year" {% if params.sort == "year" %}selected{% endif %}>По году издания</option>
+  </select>
+  <button class="btn">Применить</button>
+</form>
+<div class="grid">
+  {% for book in books %}{% include "includes/book_card.html" %}
+  {% empty %}<p class="muted">Ничего не найдено. Измените запрос или <a href="{% url 'book_add' %}">добавьте книгу</a>.</p>{% endfor %}
+</div>
+{% endblock %}
