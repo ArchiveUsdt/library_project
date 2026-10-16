@@ -1,0 +1,13 @@
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="{% url 'home' %}">Читальня</a>
+    <button class="icon" id="menu-btn" aria-label="Меню" aria-expanded="false">Меню</button>
+    <nav id="nav">
+      <a href="{% url 'home' %}">Главная</a>
+      <a href="{% url 'book_list' %}">Каталог</a>
+      <a href="{% url 'book_add' %}">Добавить книгу</a>
+      <a href="{% url 'contacts' %}">Контакты</a>
+    </nav>
+    <button class="icon" id="theme-btn" aria-label="Сменить тему">Тема</button>
+  </div>
+</header>
